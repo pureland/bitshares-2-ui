@@ -11,6 +11,20 @@ class Api {
             startChar, limit
         ]);
     }
+    get_satisfied_holder(asset_id,min_amounts,Func){
+        Apis.instance().db_api().exec("get_satisfied_holder", [
+            asset_id, min_amounts
+        ]).then(value =>{
+            Func(value);
+        });
+    }
+    get_satisfied_account_balance(asset_id,min_amounts,Func){
+        return Apis.instance().db_api().exec("get_satisfied_account_balance", [
+            asset_id, min_amounts
+        ]).then(value =>{
+            Func(value);
+    });
+    }
 }
 
 export default new Api();

@@ -129,6 +129,14 @@ module.exports = {
             error_precision: "该资产的精度不同于 %(asset)s",
             error_invalid: "该资产不能使用"
         },
+        dividend:{
+            payer:"支付者",
+            shares_asset:"股权资产",
+            dividend_asset:"红利资产",
+            minimum_amount:"最小持有量",
+            dividend_per :"派红利每 %(amounts)s",
+            dividend_submit:"分红"
+        },
         perm: {
             active: "活跃权限",
             owner: "账户权限",
@@ -410,6 +418,7 @@ module.exports = {
             asset_update_bitasset: "更新智能币",
             asset_update_feed_producers: "更新资产喂价者",
             asset_issue: "资产发行",
+            dividend:"分红",
             asset_reserve: "销毁资产",
             asset_fund_fee_pool: "积存资产费用池",
             asset_settle: "资产结算",

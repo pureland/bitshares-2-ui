@@ -64,6 +64,9 @@ class Accounts extends React.Component {
 
     render() {
         let {searchAccounts} = this.props;
+        let {xx}=this.props;
+        console.log("this.props",this.props);
+        console.log("searchAccounts",searchAccounts);
         let {searchTerm} = this.state;
         let accountRows = null;
 

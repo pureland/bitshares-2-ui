@@ -3,7 +3,7 @@ var ProgressPlugin = require('webpack/lib/ProgressPlugin');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./conf/webpack-dev');
 var compiler = webpack(config);
-
+console.log(config);
 compiler.apply(new ProgressPlugin(function (percentage, msg) {
     process.stdout.write((percentage * 100).toFixed(2) + '% ' + msg + '                 \033[0G');
 }));

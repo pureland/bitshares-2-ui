@@ -4,7 +4,6 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var Clean = require("clean-webpack-plugin");
 var git = require('git-rev-sync');
 require('es6-promise').polyfill();
-
 // BASE APP DIR
 var root_dir = path.resolve(__dirname, "..");
 
@@ -65,7 +64,7 @@ module.exports = function(options) {
             path: outputPath,
             filename: "app.js",
             pathinfo: !options.prod,
-            sourceMapFilename: "[name].js.map"
+            sourceMapFilename: "[name].js.map",
         },
         devtool: options.prod ? "source-map" : "eval",
         debug: options.prod ? false : true,
@@ -74,12 +73,12 @@ module.exports = function(options) {
                 { 
                     test: /\.jsx$/,
                     include: [path.join(root_dir, "app"), path.join(root_dir, "node_modules/react-foundation-apps"), "/home/sigve/Dev/graphene/react-foundation-apps"],
-                    loaders: options.prod ? ["babel-loader"] : ["babel-loader?cacheDirectory"]
+                    loaders:options.prod ? ["babel-loader"] : ["babel-loader?cacheDirectory"]
                 },
                 { 
                     test: /\.js$/,
                     exclude: [/node_modules/, path.resolve(root_dir, "../dl/node_modules")],
-                    loader: "babel-loader",
+                    loader:"babel-loader",
                     query: {compact: false, cacheDirectory: true}
                 },
                 { test: /\.json/, loader: "json" },

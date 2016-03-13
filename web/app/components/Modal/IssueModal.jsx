@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import Translate from "react-translate-component";
 import ChainTypes from "../Utility/ChainTypes";
 import BindToChainState from "../Utility/BindToChainState";
@@ -18,7 +18,6 @@ import AmountSelector from "../Utility/AmountSelector";
 
 @BindToChainState()
 export default class IssueModal extends React.Component {
-
     static propTypes = {
         asset_to_issue: ChainTypes.ChainAsset.isRequired
     };
@@ -75,7 +74,7 @@ export default class IssueModal extends React.Component {
 
     render() {
         let asset_to_issue = this.props.asset_to_issue.get('id');
-
+        console.log(asset_to_issue);
         return ( <form className="grid-block vertical full-width-content">
             <div className="grid-container " style={{paddingTop: "2rem"}}>
                 <div className="content-block">

@@ -151,6 +151,14 @@
             error_precision: "That asset does not have the same precision as %(asset)s",
             error_invalid: "That asset may not be used"
         },
+        dividend:{
+            payer:"payer",
+            shares_asset:"shares asset",
+            dividend_asset:"dividend asset",
+            minimum_amount:"minimum amount",
+            dividend_per :"dividend per %(amounts)s",
+            dividend_submit:"dividend"
+        },
         connections: {
             known: "Known by",
             "black": "Blacklisted by"
@@ -410,6 +418,7 @@
             asset_update_bitasset: "Update SmartCoin",
             asset_update_feed_producers: "Update asset feed producers",
             asset_issue: "Issue asset",
+            dividend: "dividend",
             asset_reserve: "Reserve asset",
             asset_fund_fee_pool: "Fund asset fee pool",
             asset_settle: "Asset settlement",

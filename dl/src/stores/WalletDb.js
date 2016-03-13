@@ -125,6 +125,9 @@ class WalletDb extends BaseStore {
                                 // returned keys from my_pubkeys
                                 throw new Error("Missing signing key for " + pubkey_string)
                             tr.add_signer(private_key, pubkey_string)
+            console.log(signer_pubkey);
+            console.log(my_pubkeys);
+            console.log(private_key);
                         }
                     })
                 }).then(()=> {

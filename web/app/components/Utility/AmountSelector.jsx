@@ -5,6 +5,7 @@ import ChainTypes from "../Utility/ChainTypes";
 import BindToChainState from "../Utility/BindToChainState";
 import FormattedAsset from "./FormattedAsset";
 import utils from "common/utils";
+import counterpart from "counterpart";
 
 @BindToChainState()
 class AssetOption extends React.Component {
@@ -76,11 +77,13 @@ class AmountSelector extends React.Component {
         placeholder: React.PropTypes.string,
         onChange: React.PropTypes.func.isRequired,
         display_balance: React.PropTypes.object,
-        tabIndex: React.PropTypes.number
+        tabIndex: React.PropTypes.number,
+        //translation_para:React.PropTypes.string
     };
 
     static defaultProps = {
-        disabled: false
+        disabled: false,
+        dis_translation:false
     };
 
     componentDidMount() {
@@ -122,10 +125,19 @@ class AmountSelector extends React.Component {
 
     render() {
         let value = this.formatAmount(this.props.amount);
+        let amount_label;
+        if (!this.props.dis_translation)
+        {   amount_label=<Translate component="label" content={this.props.label}/>
+        }
+        else
+        {
+            //amount_label=<Translate component="label" content={this.props.label} {this.props.translation_para}/>
+            amount_label=<label>{this.props.label}</label>
+        }
         return (
             <div className="amount-selector" style={this.props.style}>
                 <div className="float-right">{this.props.display_balance}</div>
-                <Translate component="label" content={this.props.label}/>
+                {amount_label}
                 <div className="inline-label">
                     <input 
                            disabled={this.props.disabled}

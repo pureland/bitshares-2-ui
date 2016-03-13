@@ -289,7 +289,15 @@ asset_claim_fees_operation_fee_parameters = new Serializer(
     "asset_claim_fees_operation_fee_parameters"
     fee: uint64
 )
-
+dividend_fees_operation_fee_parameters=new Serializer(
+  "asset_claim_fees_operation_fee_parameters"
+    fee: uint64
+    fee_per_shareholder:uint64
+    fee_per_shareholder_show:uint64
+    price_per_kbyte:uint32
+    if_native:bool
+    if_active:bool
+)
 fee_parameters = static_variant [
     transfer_operation_fee_parameters    
     limit_order_create_operation_fee_parameters    
@@ -335,6 +343,7 @@ fee_parameters = static_variant [
     transfer_from_blind_operation_fee_parameters    
     asset_settle_cancel_operation_fee_parameters    
     asset_claim_fees_operation_fee_parameters
+    dividend_fees_operation_fee_parameters
 ]
 
 fee_schedule = new Serializer( 
@@ -766,6 +775,24 @@ committee_member_update = new Serializer(
     new_url: optional string
 )
 
+receiver=new Serializer(
+    "receiver"
+    account_id:protocol_id_type "account"
+    amount: int64
+)
+dividend=new Serializer(
+    "dividend"
+    fee:asset
+    if_show:bool
+    issuer:protocol_id_type "account"
+    shares_asset:protocol_id_type "asset"
+    holder_amount:uint64
+    dividend_asset:protocol_id_type "asset"
+    min_shares:uint64
+    value_per_shares:uint64
+    receivers:array receiver
+    description:string
+)
 chain_parameters = new Serializer( 
     "chain_parameters"
     current_fees: fee_schedule
@@ -1040,6 +1067,7 @@ operation.st_operations = [
     transfer_from_blind    
     asset_settle_cancel    
     asset_claim_fees
+    dividend
 ]
 
 transaction = new Serializer( 

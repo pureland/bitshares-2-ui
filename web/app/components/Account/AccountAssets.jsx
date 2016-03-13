@@ -19,6 +19,7 @@ import classnames from "classnames";
 import counterpart from "counterpart";
 import PrivateKeyStore from "stores/PrivateKeyStore";
 import IssueModal from "../Modal/IssueModal"
+import DividendModal from  "../Modal/DividendModal"
 import ReserveAssetModal from "../Modal/ReserveAssetModal"
 import connectToStores from "alt/utils/connectToStores";
 import assetUtils from "common/asset_utils";
@@ -62,6 +63,12 @@ class AccountAssets extends React.Component {
                 to_id: "",
                 asset_id: "",
                 symbol: ""
+            },
+            dividend:{
+                asset_to_dividend: "",
+                payer: "",
+                minimum_amount :"",
+                dividend_per_amount:""
             },
             errors: {
                 symbol: null
@@ -176,7 +183,15 @@ class AccountAssets extends React.Component {
         this.setState({issue: issue});
         ZfApi.publish("issue_asset", "open");
     }
-
+    _dividendButtonClick(asset_issuer, asset_id, e) {
+        console.log(asset_issuer);
+        e.preventDefault();
+        let {dividend} = this.state;
+        dividend.asset_to_dividend= asset_id;
+        dividend.payer =asset_issuer;
+        this.setState({dividend: dividend});
+        ZfApi.publish("dividend", "open");
+    }
     _editButtonClick(symbol, account_name, e) {
         e.preventDefault();
         this.props.history.pushState(null, `/account/${account_name}/update-asset/${symbol}`);
@@ -241,6 +256,11 @@ class AccountAssets extends React.Component {
                                 <Translate content="transaction.trxTypes.asset_update" />
                             </button>
                         </td>
+                        <td>
+                            <button onClick={this._dividendButtonClick.bind(this, asset.issuer, asset.id)} className="button outline">
+                                <Translate content="transaction.trxTypes.dividend" />
+                            </button>
+                        </td>
                     </tr>
                 );
         }).toArray();
@@ -262,7 +282,7 @@ class AccountAssets extends React.Component {
                                     <th style={{maxWidth: "200px"}}><Translate content="account.user_issued_assets.description" /></th>
                                     <Translate component="th" content="markets.supply" />
                                     <th><Translate content="account.user_issued_assets.max_supply" /></th>
-                                    <th style={{textAlign: "center"}} colSpan="3"><Translate content="account.perm.action" /></th>
+                                    <th style={{textAlign: "center"}} colSpan="4"><Translate content="account.perm.action" /></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -300,6 +320,20 @@ class AccountAssets extends React.Component {
                                 account={account}
                                 onClose={() => {ZfApi.publish("reserve_asset", "close")}}
                             />
+                        </div>
+                    </Modal>
+                     <Modal id="dividend" overlay={true}>
+                        <Trigger close="dividend">
+                             <a href="#" className="close-button">&times;</a>
+                        </Trigger>
+                         <br/>
+                        <div className="grid-block vertical">
+                             <DividendModal
+                                 asset_to_dividend={this.state.dividend.asset_to_dividend}
+                                 payer={this.state.dividend.payer}
+                                 assets={assets}
+                                 onClose={() => {ZfApi.publish("dividend", "close")}}
+                             />
                         </div>
                     </Modal>
             </div>

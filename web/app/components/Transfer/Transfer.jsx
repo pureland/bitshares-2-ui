@@ -180,8 +180,12 @@ class Transfer extends React.Component {
         if (from_account && !from_error) {
             let account_balances = from_account.get("balances").toJS();
             asset_types = Object.keys(account_balances).sort(utils.sortID);
+            console.log(account_balances);
             fee_asset_types = Object.keys(account_balances).sort(utils.sortID);
+
             for (let key in account_balances) {
+                console.log("key");
+                console.log("key:"+key);
                 let asset = ChainStore.getObject(key);
                 let balanceObject = ChainStore.getObject(account_balances[key]);
                 if (balanceObject && balanceObject.get("balance") === 0) {
