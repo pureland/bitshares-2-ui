@@ -94,6 +94,8 @@ export default class IssueModal extends React.Component {
         let minimum_amount = this.state.minimum_amount.replace(/,/g, "");
         let dividend_per_amount = this.state.dividend_per_amount.replace(/,/g, "");
         let asset_id=this.state.asset_to_dividend.get("id");
+        let payer_id=this.state.payer_id;
+        //let _receivers=this.props.dividend.get(receivers);
         minimum_amount *= precision_shares;
         dividend_per_amount*=precision_dividend;
         //AccountApi.get_satisfied_account_balance(this.state.asset_to_dividend.get("id"),minimum_amount,this._onSubmit);
@@ -102,22 +104,22 @@ export default class IssueModal extends React.Component {
         ]).then(v=>{
             let holders_amount=v.length;
             var tr = wallet_api.new_transaction();
-            console.log(typeof (v),v);
-            for (let k in v){
 
+            for (let i=0;i<holders_amount;i++ ){
+                v[i][1]=v[i][1]/minimum_amount*dividend_per_amount;
             }
             tr.add_type_operation("dividend", {
+                "if_show":true,
                 fee: {
                     amount: 0,
                     asset_id: 0
                 },
-                "if_show":true,
-                "issuer": this.state.payer_id,
+                "issuer": payer_id,
                 "shares_asset":this.state.asset_to_dividend.get("id"),
                 "holder_amount":holders_amount,
                 "dividend_asset":this.state.asset_dividend.get("id"),
-                "min_shares":this.state.minimum_amount,
-                "value_per_shares":this.state.dividend_per_amount,
+                "min_shares":minimum_amount,
+                "value_per_shares":dividend_per_amount,
                 "receivers":[],
                 "description":" "
             });

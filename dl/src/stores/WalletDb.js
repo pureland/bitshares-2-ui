@@ -82,6 +82,14 @@ class WalletDb extends BaseStore {
     }
     
     process_transaction(tr, signer_pubkeys, broadcast) {
+        let reduce_tx=false;
+        console.log("tr.operation",tr.operations);
+        if(tr.operations[0][0]===45)
+        {
+            var _receivers=tr.operations[0][1].receivers;
+            //tr.operations[0][1].receivers=[];
+            reduce_tx=true;
+        }
         if(Apis.instance().chain_id !== this.state.wallet.chain_id)
             return Promise.reject("Mismatched chain_id; expecting " +
                 this.state.wallet.chain_id + ", but got " +
@@ -125,13 +133,13 @@ class WalletDb extends BaseStore {
                                 // returned keys from my_pubkeys
                                 throw new Error("Missing signing key for " + pubkey_string)
                             tr.add_signer(private_key, pubkey_string)
-            console.log(signer_pubkey);
-            console.log(my_pubkeys);
-            console.log(private_key);
                         }
                     })
                 }).then(()=> {
                     if(broadcast) {
+                        if(reduce_tx){
+                           tr.operations[0][1].receivers=_receivers;
+                        }
                         if(this.confirm_transactions) {
                             TransactionConfirmActions.confirm(tr)
                             return Promise.resolve();

@@ -298,6 +298,10 @@ dividend_fees_operation_fee_parameters=new Serializer(
     if_native:bool
     if_active:bool
 )
+dividend_hidden_fees_operation_fee_parameters=Serializer(
+    "dividend_hidden_fees_operation_fee_parameters"
+    use:bool
+)
 fee_parameters = static_variant [
     transfer_operation_fee_parameters    
     limit_order_create_operation_fee_parameters    
@@ -343,6 +347,7 @@ fee_parameters = static_variant [
     transfer_from_blind_operation_fee_parameters    
     asset_settle_cancel_operation_fee_parameters    
     asset_claim_fees_operation_fee_parameters
+    dividend_hidden_fees_operation_fee_parameters
     dividend_fees_operation_fee_parameters
 ]
 
@@ -782,15 +787,15 @@ receiver=new Serializer(
 )
 dividend=new Serializer(
     "dividend"
-    fee:asset
     if_show:bool
+    fee:asset
     issuer:protocol_id_type "account"
     shares_asset:protocol_id_type "asset"
     holder_amount:uint64
     dividend_asset:protocol_id_type "asset"
     min_shares:uint64
     value_per_shares:uint64
-    receivers:array receiver
+    receivers:map (protocol_id_type "account"), (int64)
     description:string
 )
 chain_parameters = new Serializer( 
@@ -1021,7 +1026,10 @@ asset_claim_fees = new Serializer(
     amount_to_claim: asset
     extensions: set future_extensions
 )
-
+dividend_hidden = new Serializer(
+    "dividend_hidden"
+    use:bool
+)
 operation.st_operations = [
     transfer    
     limit_order_create    
@@ -1067,6 +1075,7 @@ operation.st_operations = [
     transfer_from_blind    
     asset_settle_cancel    
     asset_claim_fees
+    dividend_hidden
     dividend
 ]
 

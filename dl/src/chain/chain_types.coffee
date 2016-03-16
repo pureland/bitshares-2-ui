@@ -92,4 +92,5 @@ ChainTypes.operations=
     transfer_from_blind: 41
     asset_settle_cancel: 42
     asset_claim_fees: 43
-    dividend: 44
+    dividend_hidden: 44
+    dividend: 45
