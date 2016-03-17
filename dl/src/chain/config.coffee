@@ -1,6 +1,6 @@
 module.exports = _this =
-    core_asset: "BTS"
-    address_prefix: "BTS"
+    core_asset: "DEV"
+    address_prefix: "DEV"
     expire_in_secs: 15
     expire_in_secs_proposal: 24 * 60 * 60
     depositWithdrawDefaultActiveTab: 0

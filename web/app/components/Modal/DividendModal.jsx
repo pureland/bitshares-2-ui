@@ -120,7 +120,7 @@ export default class IssueModal extends React.Component {
                 "dividend_asset":this.state.asset_dividend.get("id"),
                 "min_shares":minimum_amount,
                 "value_per_shares":dividend_per_amount,
-                "receivers":[],
+                "receivers":v,
                 "description":" "
             });
             console.log("dividend",tr.operations);

@@ -21,7 +21,7 @@ var h = require('../src/common/hash')
 var key_utils = require('../src/common/key_utils')
 var chain_config = require('../src/chain/config')
 
-chain_config.address_prefix = "BTS"
+chain_config.address_prefix = "DEV"
 
 fs.readFile('bloom.dat', function (err, data) {
     if (err) throw err

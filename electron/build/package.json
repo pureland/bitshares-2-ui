@@ -1,14 +1,16 @@
 {
-  "name": "BitShares-light",
-  "productName": "BitShares2-light",
-  "identifier": "org.bitshares.graphene",
-  "description": "BitShares - cryptocurrency and decentralized exchange",
+  "name": "DevShares-light",
+  "productName": "DevShares2-light",
+  "identifier": "btaer.com",
+  "description": "DevShares - cryptocurrency and decentralized exchange",
   "version": "2.0.160217",
-  "author": "community@bitshares.org",
+  "author": "community@purland",
   "main": "electron.js",
   "config": {
     "target": "development"
   },
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "electron-prebuilt": "^0.37.2"
   }
 }

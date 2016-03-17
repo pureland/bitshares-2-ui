@@ -11,3 +11,4 @@ dist
 web/app/components/Exchange/exchange.css
 cli/bundle.js
 web/dist-prod
+electron-prebuilt
