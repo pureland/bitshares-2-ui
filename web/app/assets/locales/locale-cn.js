@@ -68,7 +68,9 @@ module.exports = {
             required: "要求的币天",
             remaining: "剩余解冻天数",
             claim: "立即领取",
-            available: "可领取数量"
+            available: "可领取数量",
+            referral_link: "你的推荐链接",
+            referral_text: "分享此链接给你的朋友参与引荐计划"
         },
         connections: {
             known: "识别为",
@@ -127,7 +129,8 @@ module.exports = {
             maximum_force_settlement_volume: "强制清算最大数量（百分比）",
             backing: "做空时可抵押的资产类型",
             error_precision: "该资产的精度不同于 %(asset)s",
-            error_invalid: "该资产不能使用"
+            error_invalid: "该资产不能使用",
+            market: "关注的市场交易对"
         },
         dividend:{
             payer:"支付者",
@@ -669,7 +672,11 @@ module.exports = {
         showSettles: "在深度图中显示清算订单",
         yes: "是",
         no: "否",
-        walletLockTimeout: "钱包自动锁定时间（秒）"
+        walletLockTimeout: "钱包自动锁定时间（秒）",
+        themes: "主题",
+        darkTheme: "黑色主题",
+        lightTheme: "白色主题",
+        olDarkTheme: "Openledger黑"
     },
     pagination: {
         newer: "更近",
@@ -678,7 +685,11 @@ module.exports = {
     footer: {
         title: "Graphene (石墨烯)",
         block: "最新区块",
-        loading: "载入中..."
+        loading: "载入中...",
+        backup: "需要备份",
+        nosync: "区块链数据陈旧，请等待数据完成同步..",
+        connection: "无连接",
+        brainkey: "建议备份脑钱包密钥"
     },
     exchange: {
         price_history: "价格历史",
@@ -742,7 +753,13 @@ module.exports = {
         show_bids: "显示所有买单",
         show_asks: "显示所有卖单",
         hide: "隐藏",
-        "short": "做空"
+        "short": "做空",
+        others: "其他",
+        invert: "反转交易对价格",
+        to_market: "前往交易市场",
+        zoom: "缩放",
+        zoom_all: "显示全部",
+        settings: "图表选项"
     },
     markets: {
         title: "交易所",
