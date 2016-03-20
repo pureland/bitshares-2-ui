@@ -14,9 +14,9 @@ class SettingsStore {
         this.exportPublicMethods({getSetting: this.getSetting.bind(this)});
 
         this.settings = Immutable.Map({
-            locale: "en",
-            connection: "wss://bitshares.openledger.info/ws",
-            faucet_address: "https://bitshares.openledger.info",
+            locale: "cn",
+            connection: "120.25.249.183:9999",
+            faucet_address: "http://120.25.249.183",
             unit: CORE_ASSET,
             showSettles: false,
             walletLockTimeout: 60 * 10,
