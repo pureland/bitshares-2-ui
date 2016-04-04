@@ -15,7 +15,7 @@ class SettingsStore {
 
         this.settings = Immutable.Map({
             locale: "cn",
-            connection: "120.25.249.183:9999",
+            connection: "ws://120.25.249.183:8899",
             faucet_address: "http://120.25.249.183",
             unit: CORE_ASSET,
             showSettles: false,
@@ -94,9 +94,7 @@ class SettingsStore {
                 "tr"
             ],
             connection: [
-                "wss://bitshares.openledger.info/ws",
-                "wss://bitshares.dacplay.org:8089/ws",
-                "wss://dele-puppy.com/ws"
+                "ws://120.25.249.183:8899",
             ],
             unit: [
                 CORE_ASSET,

@@ -28,7 +28,7 @@ module.exports = {
         update_asset: "更新资产"
     },
     account: {
-        welcome: "欢迎使用 Graphene (石墨烯)系统",
+        welcome: "欢迎使用 DevShares (自平台)系统",
         assets: "资产",
         market_value: "市值",
         hour_24: "日涨跌幅%",

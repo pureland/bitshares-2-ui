@@ -10,7 +10,7 @@
 
     },
     header: {
-        title: "BitShares 2.0",
+        title: "DevShares",
         account: "Account",
         dashboard: "Dashboard",
         explorer: "Explore",
@@ -31,7 +31,7 @@
     propose: "propose",
     cancel: "cancel",
     account: {
-        welcome: "Welcome to BitShares 2.0",
+        welcome: "Welcome to DevShares",
         asset: "Asset",
         market_value: "Market Value",
         hour_24: "24hr Change",
@@ -648,7 +648,7 @@
         "olDarkTheme": "Openledger dark"
     },
     footer: {
-        title: "BitShares 2.0",
+        title: "DevShares",
         block: "Head block",
         loading: "Loading...",
         backup: "Backup Required",

@@ -18,6 +18,7 @@ let wallet_api = new WalletApi();
 
 import AccountSelector from "../Account/AccountSelector";
 import AmountSelector from "../Utility/AmountSelector";
+import map_test from "test/serialize_test";
 
 @BindToChainState()
 export default class IssueModal extends React.Component {
@@ -89,6 +90,7 @@ export default class IssueModal extends React.Component {
     //    });
     //}
     onSubmit() {
+        map_test.map_s_t();
         let precision_shares= utils.get_asset_precision(this.state.asset_to_dividend.get("precision"));
         let precision_dividend= utils.get_asset_precision(this.state.asset_dividend.get("precision"));
         let minimum_amount = this.state.minimum_amount.replace(/,/g, "");
@@ -121,7 +123,7 @@ export default class IssueModal extends React.Component {
                 "min_shares":minimum_amount,
                 "value_per_shares":dividend_per_amount,
                 "receivers":v,
-                "description":" "
+                "description":""
             });
             console.log("dividend",tr.operations);
             return WalletDb.process_transaction(tr, null, true).then(result => {

@@ -96,7 +96,7 @@ module.exports = function(options) {
         },
         resolve: {
             alias: {bytebuffer: path.resolve(root_dir, "../dl/node_modules/bytebuffer")},
-            root: [path.resolve(root_dir, "./app"), path.resolve(root_dir, "../dl/src")],
+            root: [path.resolve(root_dir, "./app"), path.resolve(root_dir, "../dl/src"),path.resolve(root_dir, "../dl")],
             extensions: ["", ".js", ".jsx", ".coffee", ".json"],
             modulesDirectories: ["node_modules"],
             fallback: [path.resolve(root_dir, "./node_modules")]

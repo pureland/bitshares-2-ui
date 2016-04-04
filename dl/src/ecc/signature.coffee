@@ -53,6 +53,7 @@ class Signature
         i = null
         nonce = 0
         _hash = hash.sha256 buf
+        console.log("d: ",hash.sha256_hex buf);
         e = BigInteger.fromBuffer(_hash)
         while true
             ecsignature = ecdsa.sign curve, _hash, private_key.d, nonce++

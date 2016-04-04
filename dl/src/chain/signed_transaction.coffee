@@ -172,7 +172,9 @@ _my.signed_transaction = ->
                 private_key
                 public_key
             )
+
             @signatures.push sig.toBuffer()
+            console.log("public_key: ",public_key.toPublicKeyString(),"private_key: ",private_key.toWif()  ,"chain_id: " ,chain_id,"sig: ",sig.toHex(),);
         @signer_private_keys = []
         @signed = true
         return
