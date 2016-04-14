@@ -289,18 +289,44 @@ asset_claim_fees_operation_fee_parameters = new Serializer(
     "asset_claim_fees_operation_fee_parameters"
     fee: uint64
 )
-dividend_fees_operation_fee_parameters=new Serializer(
-  "asset_claim_fees_operation_fee_parameters"
+dividend_hidden_operation_fee_parameters = new Serializer(
+  "dividend_hidden_operation_fee_parameters"
     fee: uint64
-    fee_per_shareholder:uint64
-    fee_per_shareholder_show:uint64
-    price_per_kbyte:uint32
-    if_native:bool
-    if_active:bool
+    fee_per_shareholder:uint32
+    price_per_kbyte: uint32
+    limited_shareholder:uint32
+    active:bool
 )
-dividend_hidden_fees_operation_fee_parameters=Serializer(
-    "dividend_hidden_fees_operation_fee_parameters"
-    use:bool
+dividend_operation_fee_parameters = new Serializer(
+  "dividend_operation_fee_parameters"
+    fee: uint64
+    fee_per_shareholder:uint32
+    price_per_kbyte: uint32
+    limited_shareholder:uint32
+    active:bool
+)
+selfer_object_create_fee_parameters = new Serializer(
+  "selfer_object_create_fee_parameters"
+    fee:uint64
+    fee_per_shareholder:uint32
+)
+selfer_object_update_fee_parameters = new Serializer(
+  "selfer_object_update_fee_parameters"
+    fee:uint64
+    fee_per_shareholder:uint32
+)
+condition_distribution_object_create_fee_parameters = new Serializer(
+  "condition_distribution_object_create_fee_parameters"
+    fee:uint64
+    fee_per_shareholder:uint32
+)
+c_d_input_fee_parameters = new Serializer(
+  "c_d_input_fee_parameters"
+    fee:uint64
+)
+c_d_settle_fee_parameters = new Serializer(
+  "c_d_settle_fee_parameters"
+    fee:uint64
 )
 fee_parameters = static_variant [
     transfer_operation_fee_parameters    
@@ -347,8 +373,13 @@ fee_parameters = static_variant [
     transfer_from_blind_operation_fee_parameters    
     asset_settle_cancel_operation_fee_parameters    
     asset_claim_fees_operation_fee_parameters
-    dividend_hidden_fees_operation_fee_parameters
-    dividend_fees_operation_fee_parameters
+    dividend_hidden_operation_fee_parameters
+    dividend_operation_fee_parameters
+    selfer_object_create_fee_parameters
+    selfer_object_update_fee_parameters
+    condition_distribution_object_create_fee_parameters
+    c_d_input_fee_parameters
+    c_d_settle_fee_parameters
 ]
 
 fee_schedule = new Serializer( 
@@ -785,19 +816,6 @@ receiver=new Serializer(
     account_id:protocol_id_type "account"
     amount: int64
 )
-dividend=new Serializer(
-    "dividend"
-    if_show:bool
-    fee:asset
-    issuer:protocol_id_type "account"
-    shares_asset:protocol_id_type "asset"
-    holder_amount:uint64
-    dividend_asset:protocol_id_type "asset"
-    min_shares:uint64
-    value_per_shares:uint64
-    receivers:map (protocol_id_type "account"), (int64)
-    description:string
-)
 chain_parameters = new Serializer( 
     "chain_parameters"
     current_fees: fee_schedule
@@ -1026,9 +1044,74 @@ asset_claim_fees = new Serializer(
     amount_to_claim: asset
     extensions: set future_extensions
 )
-dividend_hidden = new Serializer(
-    "dividend_hidden"
-    use:bool
+dividend_hidden_operation = new Serializer(
+  "dividend_hidden_operation"
+    fee:asset
+    issuer:protocol_id_type "account"
+    min_shares: asset
+    dividend_per_shares:asset
+    holder_amount :uint64
+    block_no:uint64
+    description:string
+)
+## this operation cannot use in GUI
+dividend_operation = new Serializer(
+  "dividend_operation"
+    fee:asset
+    issuer:protocol_id_type "account"
+    min_shares: asset
+    dividend_per_shares:asset
+    holder_amount :uint64
+    receivers:string
+    describtion:string
+)
+selfer_object_create = new Serializer(
+  "selfer_object_create"
+    fee:asset
+    issuer:protocol_id_type "account"
+    fee_pool:uint64
+    fee_public:bool
+    description:string
+)
+selfer_object_update = new Serializer(
+  "selfer_object_update"
+    fee:asset
+    issuer:protocol_id_type "account"
+    delta_fee_pool:uint64
+    fee_public:bool
+    description:string
+)
+condition_distribution_object_create = new Serializer(
+  "condition_distribution_object_create"
+    fee:asset
+    issuer:protocol_id_type "account"
+    public_policy:bool
+    _type:uint8
+    depth :uint8
+    summary:string
+    description:string
+    depth_description:array uint8
+    back_ratio:uint8
+    end_time :time_point_sec
+    extensions: set future_extensions
+)
+c_d_input = new Serializer(
+  "c_d_input"
+    fee:asset
+    issuer:protocol_id_type "account"
+    use_fee_pool :bool
+    to_id:protocol_id_type "condition_distribution"
+    input_value:array uint8
+    input_amount:asset
+    extensions: set future_extensions
+)
+c_d_settle = new Serializer(
+  "c_d_settle"
+    fee:asset
+    issuer:protocol_id_type "account"
+    to_id:protocol_id_type "condition_distribution"
+    input_value:array uint8
+    extensions: set future_extensions
 )
 operation.st_operations = [
     transfer    
@@ -1075,8 +1158,12 @@ operation.st_operations = [
     transfer_from_blind    
     asset_settle_cancel    
     asset_claim_fees
-    dividend_hidden
-    dividend
+    dividend_hidden_operation
+    dividend_operation
+    selfer_object_create
+    selfer_object_update
+    c_d_input
+    c_d_settle
 ]
 
 transaction = new Serializer( 

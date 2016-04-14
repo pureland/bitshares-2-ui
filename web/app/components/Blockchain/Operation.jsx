@@ -153,7 +153,6 @@ class Operation extends React.Component {
         let {op, current, block, hideFee} = this.props;
         let line = null, column = null, color = "info";
         let memoComponent = null;
-
         switch (ops[op[0]]) { // For a list of trx types, see chain_types.coffee
 
             case "transfer":
@@ -747,7 +746,98 @@ class Operation extends React.Component {
                     </span>
                 );
                 break;
+            case"dividend_hidden_operation":
+                column = (
+                    <span key={"transfer_" + this.props.key} className="right-td">
+                        <TranslateWithLinks
+                            string="operation.dividend_hidden_operation"
+                            keys={[
+                                {type: "amount", value: op[1].min_shares, arg: "amount_dvd", decimalOffset: op[1].min_shares.asset_id === "1.3.0" ? 5 : null},
+                                {type: "amount", value: op[1].dividend_per_shares, arg: "amount_share", decimalOffset: op[1].dividend_per_shares.asset_id === "1.3.0" ? 5 : null}
+                            ]}
+                        />
+                    </span>
+                )
+                break;
+            case"dividend_operation":
+                column = (
+                    <span key={"transfer_" + this.props.key} className="right-td">
+                        <TranslateWithLinks
+                            string="operation.dividend_operation"
+                            keys={[
+                                {type: "amount", value: op[1].min_shares, arg: "amount_dvd", decimalOffset: op[1].min_shares.asset_id === "1.3.0" ? 5 : null},
+                                {type: "amount", value: op[1].dividend_per_shares, arg: "amount_share", decimalOffset: op[1].dividend_per_shares.asset_id === "1.3.0" ? 5 : null}
+                            ]}
+                        />
+                    </span>
+                )
+                break;
+            case"selfer_object_create":
+                column = (
+                    <span key={"transfer_" + this.props.key} className="right-td">
+                        <TranslateWithLinks
+                            string="operation.selfer_object_create"
+                            keys={[
+                                {type: "account", value: op[1].issuer,arg: "account"}
+                            ]}
+                        />
+                    </span>
+                )
+                break;
+            case"selfer_object_update":
+                column = (
+                    <span key={"transfer_" + this.props.key} className="right-td">
+                        <TranslateWithLinks
+                            string="operation.selfer_object_update"
+                            keys={[
+                                {type: "account", value: op[1].issuer,arg: "account"}
 
+                            ]}
+                        />
+                    </span>
+                )
+                break;
+            case"condition_distribution_object_create":
+                console.log("operation.condition_distribution_object_create");
+                column = (
+                    <span key={"transfer_" + this.props.key} className="right-td">
+                        <TranslateWithLinks
+                            string="operation.condition_distribution_object_create"
+                            keys={[
+                                {type: "account", value: op[1].issuer,arg: "account"},
+                                {type: "summary", value: op[1].summary,arg: "summary"}
+                            ]}
+                        />
+                    </span>
+                )
+                break;
+            case"c_d_input":
+                column = (
+                    <span key={"transfer_" + this.props.key} className="right-td">
+                        <TranslateWithLinks
+                            string="operation.c_d_input"
+                            keys={[
+                                {type: "account", value: op[1].issuer,arg: "account"},
+                                {type: "amount", value: op[1].input_amount, arg: "amount", decimalOffset: op[1].input_amount.asset_id === "1.3.0" ? 5 : null},
+                                {type: "input", value: op[1].input,arg: "input"}
+                            ]}
+                        />
+                    </span>
+                )
+                break;
+            case"c_d_settle":
+                column = (
+                    <span key={"transfer_" + this.props.key} className="right-td">
+                        <TranslateWithLinks
+                            string="operation.c_d_settle"
+                            keys={[
+                                {type: "summary", value: op[1].to_id,arg: "policy"},
+                                {type: "input", value: op[1].input,arg: "input"}
+                            ]}
+                        />
+                    </span>
+                )
+                break;
             default:
                 console.log("unimplemented op:", op);
                 column = (

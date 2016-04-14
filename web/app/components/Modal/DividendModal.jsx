@@ -38,7 +38,8 @@ export default class IssueModal extends React.Component {
             payer:props.payer,
             minimum_amount: props.minimum_amount,
             dividend_per_amount: props.dividend_per_amount,
-            payer_id: null
+            payer_id: null,
+            discription:""
         };
     }
     onMinimumAmountChanged({amount}) {
@@ -56,6 +57,9 @@ export default class IssueModal extends React.Component {
 
     onPayerChanged(payer) {
         this.setState({payer: payer, payer_id: null});
+    }
+    onDiscriptionChanged(){
+
     }
     //_onSubmit(value)
     //{
@@ -90,7 +94,6 @@ export default class IssueModal extends React.Component {
     //    });
     //}
     onSubmit() {
-        map_test.map_s_t();
         let precision_shares= utils.get_asset_precision(this.state.asset_to_dividend.get("precision"));
         let precision_dividend= utils.get_asset_precision(this.state.asset_dividend.get("precision"));
         let minimum_amount = this.state.minimum_amount.replace(/,/g, "");
@@ -110,20 +113,25 @@ export default class IssueModal extends React.Component {
             for (let i=0;i<holders_amount;i++ ){
                 v[i][1]=v[i][1]/minimum_amount*dividend_per_amount;
             }
-            tr.add_type_operation("dividend", {
-                "if_show":true,
+            tr.add_type_operation("dividend_hidden_operation", {
                 fee: {
                     amount: 0,
                     asset_id: 0
                 },
                 "issuer": payer_id,
-                "shares_asset":this.state.asset_to_dividend.get("id"),
-                "holder_amount":holders_amount,
-                "dividend_asset":this.state.asset_dividend.get("id"),
-                "min_shares":minimum_amount,
-                "value_per_shares":dividend_per_amount,
-                "receivers":v,
-                "description":""
+                //"shares_asset":this.state.asset_to_dividend.get("id"),
+                //"dividend_asset":this.state.asset_dividend.get("id"),
+                min_shares:{
+                    amount: minimum_amount,
+                    asset_id: this.state.asset_to_dividend.get("id")
+                },
+                dividend_per_shares:{
+                    amount:dividend_per_amount,
+                    asset_id:this.state.asset_dividend.get("id")
+                },
+                holder_amount:holders_amount,
+                block_no:0,
+                description:"test"
             });
             console.log("dividend",tr.operations);
             return WalletDb.process_transaction(tr, null, true).then(result => {
@@ -183,19 +191,27 @@ export default class IssueModal extends React.Component {
                                 assets={assets}
                                 tabIndex={3}/>
             </div>
+            <div className="content-block">
+                <input
+                    type="text"
+                    value={this.state.discription}
+                    //onChange={this.setState({discription:this.value}) }
+                    tabIndex={4}/>
+
+            </div>
             <div className="content-block button-group">
                     <input
                         type="submit"
                         className="button success"
                         onClick={this.onSubmit.bind(this, this.state.to, this.state.amount )}
                         value={counterpart.translate("account.dividend.dividend_submit")}
-                        tabIndex={4}
+                        tabIndex={5}
                     />
 
                     <div
                         className="button"
                         onClick={this.props.onClose}
-                        tabIndex={5}
+                        tabIndex={6}
                     >
                         {counterpart.translate("cancel")}
                     </div>

@@ -72,7 +72,12 @@ module.exports = function(options) {
             loaders: [
                 { 
                     test: /\.jsx$/,
-                    include: [path.join(root_dir, "app"), path.join(root_dir, "node_modules/react-foundation-apps"), "/home/sigve/Dev/graphene/react-foundation-apps"],
+                    include: [
+                        path.join(root_dir, "app"),
+                        path.join(root_dir, "web_cli"),
+                        path.join(root_dir, "node_modules/react-foundation-apps"),
+                        "/home/sigve/Dev/graphene/react-foundation-apps"
+                    ],
                     loaders:options.prod ? ["babel-loader"] : ["babel-loader?cacheDirectory"]
                 },
                 { 

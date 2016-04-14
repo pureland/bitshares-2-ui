@@ -61,6 +61,7 @@
     "remarkable-loader": "^0.1.0",
     "svgo": "^0.5.1",
     "tcomb": "2.5.2",
+    "webpack-dev-server": "^1.14.1",
     "whatwg-fetch": "^0.11.0"
   },
   "devDependencies": {

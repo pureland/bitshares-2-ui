@@ -360,7 +360,14 @@
         witness_pay: "Withdrew witness pay to account",
         witness_receive: "Received witness from witness",
         committee_member_update_global_parameters: "{account} updated the global committee parameters",
-        worker_create: "{account} created a worker proposal with daily pay of {pay}"
+        worker_create: "{account} created a worker proposal with daily pay of {pay}",
+        dividend_hidden_operation:"Dividend {amount_dvd} per {amount_share}",
+        dividend_operation:"Dividend {amount_dvd} per {amount_share}",
+        selfer_object_create:"{account} create selfer {name}",
+        selfer_object_update:"{account} update selfer {name}",
+        condition_distribution_object_create:"{account} create policy {summary}",
+        c_d_input:"{account} guess {amount} {input}",
+        c_d_settle:"{policy} result is {input}"
     },
     proposal: {
         transfer: "Transfer {amount} from {from} to {to}",
@@ -491,7 +498,14 @@
             transfer_to_blind: "Transfer to blinded account",
             blind_transfer: "Blinded transfer",
             transfer_from_blind: "Transfer from blinded account",
-            asset_claim_fees: "Claim asset fees"
+            asset_claim_fees: "Claim asset fees",
+            dividend_hidden_operation:"Dividend",
+            dividend_operation:"Dividend",
+            selfer_object_create:"Selfer create",
+            selfer_object_update:"Selfer update",
+            condition_distribution_object_create:"create policy",
+            c_d_input:"Guess",
+            c_d_settle:"Win prize"
         },
         feeGroups : {
          general : "General",

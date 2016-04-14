@@ -204,7 +204,6 @@ class AccountAssetCreate extends React.Component {
 
         let flags = assetUtils.getFlags(flagBooleans, isBitAsset);
         let permissions = assetUtils.getPermissions(permissionBooleans, isBitAsset);
-
         if (this.state.marketInput !== update.description.market) {
             update.description.market = "";
         }
@@ -633,7 +632,7 @@ class AccountAssetCreate extends React.Component {
                             <div className="small-12 large-8 grid-content">
                                 <Translate component="h3" content="account.user_issued_assets.description" />
                                 <label>
-                                    <textarea
+                                    <input
                                         style={{height: "7rem"}}
                                         rows="1"
                                         value={update.description.main}

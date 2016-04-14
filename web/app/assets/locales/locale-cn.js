@@ -340,7 +340,14 @@ module.exports = {
         witness_update: "{account} 更新了见证人信息",
         witness_pay: "提取见证人收入到账户",
         witness_receive: "Received witness from witness",
-        worker_create: "{account} 创建了预算提案，请求每日支付 {pay}"
+        worker_create: "{account} 创建了预算提案，请求每日支付 {pay}",
+        dividend_hidden_operation:"分红 {amount_dvd} 每 {amount_share}",
+        dividend_operation:"分红 {amount_dvd} 每 {amount_share}you{get_or_pay}{dvd_id}",
+        selfer_object_create:"{account} 创建自账户",
+        selfer_object_update:"{account} 升级自账户 ",
+        condition_distribution_object_create:"{account} 创建策略 {summary}",
+        c_d_input:"{account} 竞猜 {amount} {input}",
+        c_d_settle:"{summary} 结果是 {input}"
     },
     transaction: {
         sent: "发送",
@@ -454,7 +461,14 @@ module.exports = {
             blind_transfer: "隐私转账",
             transfer_from_blind: "从隐私账户转出",
             committee_member_update: "更新理事会成员账户",
-            asset_claim_fees: "领取资产手续费"
+            asset_claim_fees: "领取资产手续费",
+            dividend_hidden_operation:"分红",
+            dividend_operation:"分红",
+            selfer_object_create:"创建自用户",
+            selfer_object_update:"升级自用户",
+            condition_distribution_object_create:"创建策略",
+            c_d_input:"竞猜",
+            c_d_settle:"开奖"
         },
         confirm: "请确认交易",
         broadcast_success: "交易已向网络广播",

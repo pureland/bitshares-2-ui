@@ -5,7 +5,7 @@ var emitter;
 module.exports = {
         emitter: function () {
         if ( !emitter ) {
-            emitter = ee({});            
+            emitter = ee({});
         }
         return emitter;
     }

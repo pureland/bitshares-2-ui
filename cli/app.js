@@ -21,7 +21,6 @@ promisify(repl_instance);
 repl_instance.on("exit", function () {
     Apis.instance().close();
 });
-var hist_file = process.env.HOME + "/.graphene_history";
 repl_history(repl_instance, hist_file);
 
 require('dl_cli_index').init(repl_instance.context)

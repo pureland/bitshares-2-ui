@@ -24,6 +24,8 @@ ChainTypes.object_type=
     vesting_balance: 13
     worker: 14
     balance: 15
+    dividend:16
+    condition_distribution:17
 
 ChainTypes.impl_object_type=
     global_property: 0
@@ -92,5 +94,10 @@ ChainTypes.operations=
     transfer_from_blind: 41
     asset_settle_cancel: 42
     asset_claim_fees: 43
-    dividend_hidden: 44
-    dividend: 45
+    dividend_hidden_operation:44
+    dividend_operation:45
+    selfer_object_create:46
+    selfer_object_update:47
+    condition_distribution_object_create:48
+    c_d_input:49
+    c_d_settle:50
