@@ -138,7 +138,7 @@ class SettingsStore {
         if (ss.get("settings_v3")) {
             this.settings = Immutable.Map(_.merge(this.defaultSettings.toJS(), ss.get("settings_v3")));
         }
-
+        this.settings=this.defaultSettings;
         if (ss.get("starredMarkets")) {
             this.starredMarkets = Immutable.Map(ss.get("starredMarkets"));
         }

@@ -28,28 +28,35 @@ class cli extends React.Component {
             paras:paras
         });
     }
+     isArray(arr)
+    {
+        return typeof arr == "object" && arr.constructor == Array;
+    }
     object_to_string(obj,str,deep=1){
-        if( deep=1){var str="";}
+        if( deep===1){var str="";}
         var ent="\n";
-        var blank="  ";
-        var bracket="]"+ent;
-        for (let i=0;i<deep;i++){
+        var blank=" ";
+        for (let i=1;i<deep;i++){
             blank+=blank;
         }
         let keys=Object.keys(obj);
+
         for (let i=0;i<keys.length;i++ ){
             let k=keys[i];
             let v=obj[k];
-            if (typeof(v)==="object"){
+            if (typeof(v)==="object"&&k!="extensions"){
                 str=this.object_to_string(v,str,deep+1);}
             else
             if( i===0)
-            {blank="["+ent+blank;}
-            else{blank="  ";}
-            if(i===(keys.length-1))
-                str=str+blank+k+": "+v+ent+bracket;
-            else
+            {   str=str+blank+"["+ent;
                 str=str+blank+k+": "+v+ent;
+            }
+            else if(i===(keys.length-1)){
+                str=str+blank+k+": "+v+ent;
+                str=str+blank+"]"+ent;
+            }
+            else{
+                str=str+blank+k+": "+v+ent;}
         }
         return str
     }
@@ -84,7 +91,7 @@ class cli extends React.Component {
                 <div>
                 <span>output</span>
                 </div>
-                <textarea rows="20" cols="100" value={this.state.result}>{this.state.result}</textarea>
+                <textarea rows="60" cols="60" value={this.state.result}>{this.state.result}</textarea>
             </div>
         );
     }

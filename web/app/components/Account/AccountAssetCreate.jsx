@@ -632,7 +632,7 @@ class AccountAssetCreate extends React.Component {
                             <div className="small-12 large-8 grid-content">
                                 <Translate component="h3" content="account.user_issued_assets.description" />
                                 <label>
-                                    <input
+                                    <textarea
                                         style={{height: "7rem"}}
                                         rows="1"
                                         value={update.description.main}
